@@ -1,0 +1,6 @@
+.weather-card {
+    /* Horizontal offset (to the right) | Vertical offset (to the bottom) | Blur radius | Spread radius | Color */
+    box-shadow: 4px 4px 10px 0px rgba(255, 255, 255, 0.7);
+    padding: 20px;
+    border-radius: 15px;
+}

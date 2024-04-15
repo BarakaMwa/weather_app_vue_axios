@@ -1,0 +1,41 @@
+{
+  "location": {
+    "name": "Lusaka",
+    "region": "Lusaka",
+    "country": "Zambia",
+    "lat": -15.42,
+    "lon": 28.28,
+    "tz_id": "Africa/Lusaka",
+    "localtime_epoch": 1713101453,
+    "localtime": "2024-04-14 15:30"
+  },
+  "current": {
+    "last_updated_epoch": 1713101400,
+    "last_updated": "2024-04-14 15:30",
+    "temp_c": 21.8,
+    "temp_f": 71.2,
+    "is_day": 1,
+    "condition": {
+      "text": "Patchy rain nearby",
+      "icon": "//cdn.weatherapi.com/weather/64x64/day/176.png",
+      "code": 1063
+    },
+    "wind_mph": 6.5,
+    "wind_kph": 10.4,
+    "wind_degree": 96,
+    "wind_dir": "E",
+    "pressure_mb": 1016.0,
+    "pressure_in": 29.99,
+    "precip_mm": 0.05,
+    "precip_in": 0.0,
+    "humidity": 65,
+    "cloud": 87,
+    "feelslike_c": 21.8,
+    "feelslike_f": 71.2,
+    "vis_km": 10.0,
+    "vis_miles": 6.0,
+    "uv": 6.0,
+    "gust_mph": 8.2,
+    "gust_kph": 13.2
+  }
+}

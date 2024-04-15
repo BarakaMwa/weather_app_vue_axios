@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Background</title>
+    <style>
+        /* Style to make the video fill the entire screen */
+        video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1; /* Place the video behind everything else */
+        }
+
+        /* Additional styles for content on top of the video */
+        .content {
+            position: relative;
+            z-index: 1; /* Place the content on top of the video */
+            color: white;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+<!-- Video element to play the background video -->
+<video autoplay loop muted>
+    <source src="./videos/CloudsFormationCoversTheRayOfSun.mp4" type="video/mp4">
+    <!-- Add additional source elements for different video formats (e.g., WebM, Ogg) -->
+    Your browser does not support the video tag.
+</video>
+
+<!-- Content to display on top of the video -->
+<div class="content">
+    <h1>Welcome to My Website</h1>
+    <p>This is some content displayed on top of the video background.</p>
+</div>
+</body>
+</html>

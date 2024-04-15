@@ -1,0 +1,17 @@
+/* Style to make the video fill the entire screen */
+video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1; /* Place the video behind everything else */
+}
+
+/* Additional styles for content on top of the video */
+.content {
+    position: relative;
+    z-index: 1; /* Place the content on top of the video */
+    color: white;
+    padding: 20px;
+}

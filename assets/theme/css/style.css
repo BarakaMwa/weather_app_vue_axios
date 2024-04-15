@@ -739,6 +739,8 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
   .mbr-section-subtitle {
     margin-bottom: 0; }
 
+  .mbr-section-hero.mbr-after-navbar .mbr-section .search-section {
+    padding-top: 80px; }
   .mbr-section-hero.mbr-after-navbar .mbr-section {
     padding-top: 120px; }
   .mbr-section-hero.mbr-section-with-arrow .mbr-section {
@@ -758,7 +760,7 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
   background-color: #000;
   bottom: 0;
   left: 0;
-  opacity: 0.5;
+  opacity: 0.1;
   position: absolute;
   right: 0;
   top: 0;
