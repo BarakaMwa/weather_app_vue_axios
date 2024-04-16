@@ -51,10 +51,10 @@
 
                     <ul class="nav-dropdown collapse pull-xs-right nav navbar-nav navbar-toggleable-sm"
                         id="exCollapsingNavbar">
-                        <li class="nav-item dropdown"><a class="nav-link link" href="https://mobirise.com/">Home</a>
+                        <li class="nav-item dropdown"><a class="nav-link link" href="#">Home</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link link" href="https://mobirise.com/">Search</a></li>
-                        <li class="nav-item"><a class="nav-link link" href="https://mobirise.com/">Settings</a></li>
+                        <li class="nav-item"><a class="nav-link link" href="#">Search</a></li>
+                        <li class="nav-item"><a class="nav-link link" href="#">Settings</a></li>
                     </ul>
                     <button hidden="" class="navbar-toggler navbar-close" type="button" data-toggle="collapse"
                             data-target="#exCollapsingNavbar">
@@ -70,7 +70,8 @@
 </section>
 
 <section class="mbr-section mbr-section-hero mbr-section-full header2 mbr-parallax-background mbr-after-navbar" id="app"
-         id="header2-7" style="background-image: url(assets/images/landscape.jpg);">
+         id="header2-7"
+         style="background-image: url(assets/images/dark-background-abstract-background-network-3d-background-3840x2160-8324.png);">
 
     <div class="mbr-overlay" style="opacity: 0.3; background-color: rgb(0, 0, 0);">
     </div>
@@ -92,7 +93,7 @@
                             </div>
 
                             <div class="mbr-section-btn">
-                                <div class="container-fluid">
+                                <div class="container">
                                     <div class="form-group">
                                         <input type="text" class="form-control" v-model="searchQuery"
                                                @keyup.enter="searchLocation" placeholder="Enter location...">
@@ -139,9 +140,27 @@
                         <div class="mbr-table-cell mbr-valign-top mbr-left-padding-md-up col-md-7 image-size text-white"
                              v-if="Object.keys(current).length > 0"
                              style="width: 50%;">
+                            <div>
+
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-pills" role="tablist">
+                                    <li role="presentation" class="active"><a href="#home" aria-controls="home"
+                                                                              role="tab" data-toggle="tab">Location</a></li>
+                                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab"
+                                                               data-toggle="tab">Weather</a></li>
+                                </ul>
+
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane active" id="home">Home</div>
+                                    <div role="tabpanel" class="tab-pane" id="profile">Profile</div>
+                                </div>
+
+                            </div>
                             <div class="row">
-                                <div class="col">
+                                <div class="container">
                                     <div class="weather-card one">
+
                                         <div class="top">
                                             <div class="wrapper">
                                                 <div class="mynav">
@@ -149,6 +168,7 @@
                                                             class="lnr lnr-chevron-left"></span></a>
                                                     <a href="javascript:;"><span class="lnr lnr-cog"></span></a>
                                                 </div>
+                                                <img :src="current.condition.icon">
                                                 <h1 class="heading text-capitalize display-2">
                                                     {{current.condition.text}}</h1>
                                                 <h3 class="location">{{location.name}}, {{location.country}}</h3>
@@ -165,10 +185,21 @@
                                                     <sup></sup><span class="temp-type">F</span>
                                                 </p>
                                                 <p class="temp">
-                                                    <strong>Wind Speed:</strong>
+                                                    <strong>Gust Speed:</strong>
                                                     <span class="temp-value">{{current.gust_kph}}</span>
                                                     <sup>km</sup><span class="temp-type">/hr</span> -
                                                     <span class="temp-value">{{current.gust_mph}}</span>
+                                                    <sup>miles</sup><span class="temp-type">/hr</span>
+                                                </p>
+                                                <p class="temp">
+                                                    <strong>Wind Direction:</strong>
+                                                    <span class="temp-value">{{current.wind_dir}}</span>
+                                                </p>
+                                                <p class="temp">
+                                                    <strong>Wind Speed:</strong>
+                                                    <span class="temp-value">{{current.wind_kph}}</span>
+                                                    <sup>km</sup><span class="temp-type">/hr</span> -
+                                                    <span class="temp-value">{{current.wind_mph}}</span>
                                                     <sup>miles</sup><span class="temp-type">/hr</span>
                                                 </p>
                                                 <p class="temp">
@@ -178,17 +209,26 @@
                                                 <p class="temp">
                                                     <strong>Rain Fall:</strong>
                                                     <span class="temp-value">{{current.precip_in}}</span>
-<!--                                                    <sup>km</sup>-->
+                                                    <!--                                                    <sup>km</sup>-->
                                                     <span class="temp-type">inches</span> -
                                                     <span class="temp-value">{{current.precip_mm}}</span>
-<!--                                                    <sup>miles</sup>-->
+                                                    <!--                                                    <sup>miles</sup>-->
+                                                    <span class="temp-type">mm</span>
+                                                </p>
+                                                <p class="temp">
+                                                    <strong>Pressure:</strong>
+                                                    <span class="temp-value">{{current.pressure_in}}</span>
+                                                    <!--                                                    <sup>km</sup>-->
+                                                    <span class="temp-type">inches</span> -
+                                                    <span class="temp-value">{{current.pressure_mb}}</span>
+                                                    <!--                                                    <sup>miles</sup>-->
                                                     <span class="temp-type">mm</span>
                                                 </p>
                                             </div>
                                         </div>
 
 
-                                        <div class="bottom">
+                                        <!--<div class="bottom">
                                             <div class="wrapper">
                                                 <ul class="forecast">
                                                     <a href="javascript:;"><span
@@ -209,7 +249,8 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                                        </div>
+                                        </div>-->
+
                                     </div>
                                 </div>
                             </div>

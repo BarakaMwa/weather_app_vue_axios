@@ -1,0 +1,16 @@
+{
+  "data": [
+    {
+      "code": "DE",
+      "currencyCodes": [
+        "EUR"
+      ],
+      "name": "Germany",
+      "wikiDataId": "Q183"
+    }
+  ],
+  "metadata": {
+    "currentOffset": 0,
+    "totalCount": 1
+  }
+}

@@ -8,6 +8,7 @@ new Vue({
         error: ''
     },
     methods: {
+
         async searchLocation() {
             // Clear previous results
             this.location = {};
