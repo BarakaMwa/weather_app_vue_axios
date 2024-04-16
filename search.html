@@ -116,15 +116,18 @@
                                 <div class="col">
                                     <ul class="nav nav-pills nav-justified" role="tablist">
                                         <li role="presentation" v-if="Object.keys(location).length > 0" class="active">
-                                            <a class="text-white" href="#location-div" data-toggle="tab" role="tab">Location</a></li>
+                                            <a class="text-white" data-target="#location-div" data-toggle="tab" role="tab"
+                                               aria-controls="location-div">Location</a></li>
                                         <li role="presentation" v-if="Object.keys(current).length > 0"><a
-                                                class="text-white" href="#weather-div" data-toggle="tab" role="tab">Weather</a></li>
+                                                class="text-white" data-target="#weather-div" data-toggle="tab" role="tab"
+                                                aria-controls="current-div">Weather</a></li>
                                     </ul>
                                     <br>
 
                                     <!-- Tab panes -->
                                     <div class="tab-content">
-                                        <div role="tabpanel" class="tab-pane weather-card two text-white active" id="location-div"
+                                        <div role="tabpanel" class="tab-pane weather-card two text-white active"
+                                             id="location-div"
                                              v-if="Object.keys(location).length > 0">
                                             <div class="row">
                                                 <strong>Location:</strong>
