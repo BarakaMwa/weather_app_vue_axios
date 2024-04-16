@@ -93,7 +93,7 @@
                             </div>
 
                             <div class="mbr-section-btn">
-                                <div class="container">
+                                <div class="container-fluid">
                                     <div class="form-group">
                                         <input type="text" class="form-control" v-model="searchQuery"
                                                @keyup.enter="searchLocation" placeholder="Enter location...">
@@ -101,66 +101,52 @@
                                                 @click="searchLocation">Search
                                         </button>
                                     </div>
-                                    <div v-if="loading" class="text-center">Loading...</div>
-                                    <div v-else-if="error" class="alert alert-danger" role="alert">
-                                        Error: {{ error }}
-                                    </div>
-                                    <div v-else>
-                                        <br>
-                                        <div class="panel panel-primary" v-if="Object.keys(location).length > 0">
-                                            <div class="panel-heading"><strong>Location:</strong>
-                                                {{location.country}}
-                                            </div>
-                                            <div class="panel-body">
-                                                <ul class="list-group text-black">
-                                                    <li class="list-group-item">
-                                                        <strong>Name</strong>- {{ location.name }}
-                                                    </li>
-                                                    <li class="list-group-item">
-                                                        <strong>Region</strong>: {{ location.region }}
-                                                    </li>
-                                                    <li class="list-group-item">
-                                                        <strong>Co-ordinates</strong>: {{ location.lat}},{{
-                                                        location.lon}}
-                                                    </li>
-                                                    <li class="list-group-item">
-                                                        <strong>Time Zone</strong>: {{ location.tz_id}}
-                                                    </li>
-                                                    <li class="list-group-item">
-                                                        <strong>Local Date and Time</strong>: {{ location.localtime}}
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
 
                         </div>
                         <div class="mbr-table-cell mbr-valign-top mbr-left-padding-md-up col-md-7 image-size text-white"
-                             v-if="Object.keys(current).length > 0"
-                             style="width: 50%;">
-                            <div>
-
-                                <!-- Nav tabs -->
-                                <ul class="nav nav-pills" role="tablist">
-                                    <li role="presentation" class="active"><a href="#home" aria-controls="home"
-                                                                              role="tab" data-toggle="tab">Location</a></li>
-                                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab"
-                                                               data-toggle="tab">Weather</a></li>
-                                </ul>
-
-                                <!-- Tab panes -->
-                                <div class="tab-content">
-                                    <div role="tabpanel" class="tab-pane active" id="home">Home</div>
-                                    <div role="tabpanel" class="tab-pane" id="profile">Profile</div>
-                                </div>
-
+                             style="width: 60%;">
+                            <div v-if="loading" class="text-center display-1 text-white">Loading...</div>
+                            <div v-else-if="error" class="alert alert-danger" role="alert">
+                                Error: {{ error }}
                             </div>
-                            <div class="row">
-                                <div class="container">
-                                    <div class="weather-card one">
+                            <div class="col-lg-12" v-else>
+                                <div class="col">
+                                    <ul class="nav nav-pills nav-justified">
+                                        <li role="presentation" v-if="Object.keys(location).length > 0" class="active"><a href="#location-div">Location</a></li>
+                                        <li role="presentation" v-if="Object.keys(current).length > 0"><a href="#weather-div">Weather</a></li>
+                                    </ul>
+                                    <br>
+                                    <div class="weather-card one text-white" id="location-div" v-if="Object.keys(location).length > 0">
+                                        <div class="row">
+                                            <strong>Location:</strong>
+                                            {{location.country}}
+                                        </div>
+                                        <div class="row">
+                                            <div class="text-white text-center">
+                                                <p class="">
+                                                    <strong>Name</strong>: {{ location.name }}
+                                                </p>
+                                                <p class="">
+                                                    <strong>Region</strong>: {{ location.region }}
+                                                </p>
+                                                <p class="">
+                                                    <strong>Co-ordinates</strong>: {{ location.lat}},{{
+                                                    location.lon}}
+                                                </p>
+                                                <p class="">
+                                                    <strong>Time Zone</strong>: {{ location.tz_id}}
+                                                </p>
+                                                <p class="">
+                                                    <strong>Local Date and Time</strong>: {{ location.localtime}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
 
+                                    <div class="weather-card one" id="weather-div" v-if="Object.keys(current).length > 0">
                                         <div class="top">
                                             <div class="wrapper">
                                                 <div class="mynav">
@@ -226,8 +212,6 @@
                                                 </p>
                                             </div>
                                         </div>
-
-
                                         <!--<div class="bottom">
                                             <div class="wrapper">
                                                 <ul class="forecast">
@@ -250,8 +234,8 @@
                                                 </ul>
                                             </div>
                                         </div>-->
-
                                     </div>
+
                                 </div>
                             </div>
                         </div>
