@@ -115,127 +115,134 @@
                             <div class="col-lg-12" v-else>
                                 <div class="col">
                                     <ul class="nav nav-pills nav-justified">
-                                        <li role="presentation" v-if="Object.keys(location).length > 0" class="active"><a href="#location-div">Location</a></li>
-                                        <li role="presentation" v-if="Object.keys(current).length > 0"><a href="#weather-div">Weather</a></li>
+                                        <li role="presentation" v-if="Object.keys(location).length > 0" class="active">
+                                            <a class="text-white" href="#location-div">Location</a></li>
+                                        <li role="presentation" v-if="Object.keys(current).length > 0"><a
+                                                class="text-white" href="#weather-div">Weather</a></li>
                                     </ul>
                                     <br>
-                                    <div class="weather-card one text-white" id="location-div" v-if="Object.keys(location).length > 0">
-                                        <div class="row">
-                                            <strong>Location:</strong>
-                                            {{location.country}}
-                                        </div>
-                                        <div class="row">
-                                            <div class="text-white text-center">
-                                                <p class="">
-                                                    <strong>Name</strong>: {{ location.name }}
-                                                </p>
-                                                <p class="">
-                                                    <strong>Region</strong>: {{ location.region }}
-                                                </p>
-                                                <p class="">
-                                                    <strong>Co-ordinates</strong>: {{ location.lat}},{{
-                                                    location.lon}}
-                                                </p>
-                                                <p class="">
-                                                    <strong>Time Zone</strong>: {{ location.tz_id}}
-                                                </p>
-                                                <p class="">
-                                                    <strong>Local Date and Time</strong>: {{ location.localtime}}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                    <div class="weather-card one" id="weather-div" v-if="Object.keys(current).length > 0">
-                                        <div class="top">
-                                            <div class="wrapper">
-                                                <div class="mynav">
-                                                    <a href="javascript:;"><span
-                                                            class="lnr lnr-chevron-left"></span></a>
-                                                    <a href="javascript:;"><span class="lnr lnr-cog"></span></a>
+                                    <!-- Tab panes -->
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane weather-card two text-white" id="location-div"
+                                             v-if="Object.keys(location).length > 0">
+                                            <div class="row">
+                                                <strong>Location:</strong>
+                                                {{location.country}}
+                                            </div>
+                                            <div class="row">
+                                                <div class="text-white text-center">
+                                                    <p class="">
+                                                        <strong>Name</strong>: {{ location.name }}
+                                                    </p>
+                                                    <p class="">
+                                                        <strong>Region</strong>: {{ location.region }}
+                                                    </p>
+                                                    <p class="">
+                                                        <strong>Co-ordinates</strong>: {{ location.lat}},{{
+                                                        location.lon}}
+                                                    </p>
+                                                    <p class="">
+                                                        <strong>Time Zone</strong>: {{ location.tz_id}}
+                                                    </p>
+                                                    <p class="">
+                                                        <strong>Local Date and Time</strong>: {{ location.localtime}}
+                                                    </p>
                                                 </div>
-                                                <img :src="current.condition.icon">
-                                                <h1 class="heading text-capitalize display-2">
-                                                    {{current.condition.text}}</h1>
-                                                <h3 class="location">{{location.name}}, {{location.country}}</h3>
-                                                <p class="cloud">
-                                                    <strong>Cloud Cover:</strong>
-                                                    <span class="temp-value">{{current.cloud}}</span>
-                                                    <!--                                                    <sup>o</sup><span class="temp-type">C</span>-->
-                                                </p>
-                                                <p class="temp">
-                                                    <strong>Temperature :</strong>
-                                                    <span class="temp-value">{{current.feelslike_c}}</span>
-                                                    <sup>o</sup><span class="temp-type">C</span> -
-                                                    <span class="temp-value">{{current.feelslike_f}}</span>
-                                                    <sup></sup><span class="temp-type">F</span>
-                                                </p>
-                                                <p class="temp">
-                                                    <strong>Gust Speed:</strong>
-                                                    <span class="temp-value">{{current.gust_kph}}</span>
-                                                    <sup>km</sup><span class="temp-type">/hr</span> -
-                                                    <span class="temp-value">{{current.gust_mph}}</span>
-                                                    <sup>miles</sup><span class="temp-type">/hr</span>
-                                                </p>
-                                                <p class="temp">
-                                                    <strong>Wind Direction:</strong>
-                                                    <span class="temp-value">{{current.wind_dir}}</span>
-                                                </p>
-                                                <p class="temp">
-                                                    <strong>Wind Speed:</strong>
-                                                    <span class="temp-value">{{current.wind_kph}}</span>
-                                                    <sup>km</sup><span class="temp-type">/hr</span> -
-                                                    <span class="temp-value">{{current.wind_mph}}</span>
-                                                    <sup>miles</sup><span class="temp-type">/hr</span>
-                                                </p>
-                                                <p class="temp">
-                                                    <strong>Humidity:</strong>
-                                                    <span class="temp-value">{{current.humidity}}</span>
-                                                </p>
-                                                <p class="temp">
-                                                    <strong>Rain Fall:</strong>
-                                                    <span class="temp-value">{{current.precip_in}}</span>
-                                                    <!--                                                    <sup>km</sup>-->
-                                                    <span class="temp-type">inches</span> -
-                                                    <span class="temp-value">{{current.precip_mm}}</span>
-                                                    <!--                                                    <sup>miles</sup>-->
-                                                    <span class="temp-type">mm</span>
-                                                </p>
-                                                <p class="temp">
-                                                    <strong>Pressure:</strong>
-                                                    <span class="temp-value">{{current.pressure_in}}</span>
-                                                    <!--                                                    <sup>km</sup>-->
-                                                    <span class="temp-type">inches</span> -
-                                                    <span class="temp-value">{{current.pressure_mb}}</span>
-                                                    <!--                                                    <sup>miles</sup>-->
-                                                    <span class="temp-type">mm</span>
-                                                </p>
                                             </div>
                                         </div>
-                                        <!--<div class="bottom">
-                                            <div class="wrapper">
-                                                <ul class="forecast">
-                                                    <a href="javascript:;"><span
-                                                            class="lnr lnr-chevron-up go-up"></span></a>
-                                                    <li class="active">
-                                                        <span class="date">Yesterday</span>
-                                                        <span class="lnr lnr-sun condition">
-									<span class="temp">23<span class="deg">0</span><span
-                                            class="temp-type">C</span></span>
-								</span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="date">Tomorrow</span>
-                                                        <span class="lnr lnr-cloud condition">
-									<span class="temp">21<span class="deg">0</span><span
-                                            class="temp-type">C</span></span>
-								</span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>-->
-                                    </div>
 
+                                        <div role="tabpanel" class="tab-pane weather-card one" id="weather-div"
+                                             v-if="Object.keys(current).length > 0">
+                                            <div class="top">
+                                                <div class="wrapper">
+                                                    <div class="mynav">
+                                                        <a href="javascript:;"><span
+                                                                class="lnr lnr-chevron-left"></span></a>
+                                                        <a href="javascript:;"><span class="lnr lnr-cog"></span></a>
+                                                    </div>
+                                                    <img :src="current.condition.icon">
+                                                    <h1 class="heading text-capitalize display-2">
+                                                        {{current.condition.text}}</h1>
+                                                    <h3 class="location">{{location.name}}, {{location.country}}</h3>
+                                                    <p class="cloud">
+                                                        <strong>Cloud Cover:</strong>
+                                                        <span class="temp-value">{{current.cloud}}</span>
+                                                        <!--                                                    <sup>o</sup><span class="temp-type">C</span>-->
+                                                    </p>
+                                                    <p class="temp">
+                                                        <strong>Temperature :</strong>
+                                                        <span class="temp-value">{{current.feelslike_c}}</span>
+                                                        <sup>o</sup><span class="temp-type">C</span> -
+                                                        <span class="temp-value">{{current.feelslike_f}}</span>
+                                                        <sup></sup><span class="temp-type">F</span>
+                                                    </p>
+                                                    <p class="temp">
+                                                        <strong>Gust Speed:</strong>
+                                                        <span class="temp-value">{{current.gust_kph}}</span>
+                                                        <sup>km</sup><span class="temp-type">/hr</span> -
+                                                        <span class="temp-value">{{current.gust_mph}}</span>
+                                                        <sup>miles</sup><span class="temp-type">/hr</span>
+                                                    </p>
+                                                    <p class="temp">
+                                                        <strong>Wind Direction:</strong>
+                                                        <span class="temp-value">{{current.wind_dir}}</span>
+                                                    </p>
+                                                    <p class="temp">
+                                                        <strong>Wind Speed:</strong>
+                                                        <span class="temp-value">{{current.wind_kph}}</span>
+                                                        <sup>km</sup><span class="temp-type">/hr</span> -
+                                                        <span class="temp-value">{{current.wind_mph}}</span>
+                                                        <sup>miles</sup><span class="temp-type">/hr</span>
+                                                    </p>
+                                                    <p class="temp">
+                                                        <strong>Humidity:</strong>
+                                                        <span class="temp-value">{{current.humidity}}</span>
+                                                    </p>
+                                                    <p class="temp">
+                                                        <strong>Rain Fall:</strong>
+                                                        <span class="temp-value">{{current.precip_in}}</span>
+                                                        <!--                                                    <sup>km</sup>-->
+                                                        <span class="temp-type">inches</span> -
+                                                        <span class="temp-value">{{current.precip_mm}}</span>
+                                                        <!--                                                    <sup>miles</sup>-->
+                                                        <span class="temp-type">mm</span>
+                                                    </p>
+                                                    <p class="temp">
+                                                        <strong>Pressure:</strong>
+                                                        <span class="temp-value">{{current.pressure_in}}</span>
+                                                        <!--                                                    <sup>km</sup>-->
+                                                        <span class="temp-type">inches</span> -
+                                                        <span class="temp-value">{{current.pressure_mb}}</span>
+                                                        <!--                                                    <sup>miles</sup>-->
+                                                        <span class="temp-type">mm</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!--<div class="bottom">
+                                                <div class="wrapper">
+                                                    <ul class="forecast">
+                                                        <a href="javascript:;"><span
+                                                                class="lnr lnr-chevron-up go-up"></span></a>
+                                                        <li class="active">
+                                                            <span class="date">Yesterday</span>
+                                                            <span class="lnr lnr-sun condition">
+                                        <span class="temp">23<span class="deg">0</span><span
+                                                class="temp-type">C</span></span>
+                                    </span>
+                                                        </li>
+                                                        <li>
+                                                            <span class="date">Tomorrow</span>
+                                                            <span class="lnr lnr-cloud condition">
+                                        <span class="temp">21<span class="deg">0</span><span
+                                                class="temp-type">C</span></span>
+                                    </span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>-->
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
