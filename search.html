@@ -114,11 +114,11 @@
                             </div>
                             <div class="col-lg-12" v-else>
                                 <div class="col">
-                                    <ul class="nav nav-pills nav-justified">
+                                    <ul class="nav nav-pills nav-justified" role="tablist">
                                         <li role="presentation" v-if="Object.keys(location).length > 0" class="active">
-                                            <a class="text-white" href="#location-div">Location</a></li>
+                                            <a class="text-white" href="#location-div" data-toggle="tab" role="tab">Location</a></li>
                                         <li role="presentation" v-if="Object.keys(current).length > 0"><a
-                                                class="text-white" href="#weather-div">Weather</a></li>
+                                                class="text-white" href="#weather-div" data-toggle="tab" role="tab">Weather</a></li>
                                     </ul>
                                     <br>
 
