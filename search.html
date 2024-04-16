@@ -118,16 +118,14 @@
                                         <li role="presentation" v-if="Object.keys(location).length > 0" class="active">
                                             <a class="text-white" data-target="#location-div" data-toggle="tab" role="tab"
                                                aria-controls="location-div">Location</a></li>
-                                        <li role="presentation" v-if="Object.keys(current).length > 0"><a
-                                                class="text-white" data-target="#weather-div" data-toggle="tab" role="tab"
-                                                aria-controls="current-div">Weather</a></li>
+                                        <li role="presentation" v-if="Object.keys(current).length > 0">
+                                            <a class="text-white" data-target="#weather-div" data-toggle="tab" role="tab"
+                                                aria-controls="weather-div">Weather</a></li>
                                     </ul>
                                     <br>
-
                                     <!-- Tab panes -->
                                     <div class="tab-content">
-                                        <div role="tabpanel" class="tab-pane weather-card two text-white active"
-                                             id="location-div"
+                                        <div role="tabpanel" class="tab-pane weather-card two text-white fade in active" id="location-div"
                                              v-if="Object.keys(location).length > 0">
                                             <div class="row">
                                                 <strong>Location:</strong>
@@ -155,7 +153,7 @@
                                             </div>
                                         </div>
 
-                                        <div role="tabpanel" class="tab-pane weather-card one" id="weather-div"
+                                        <div role="tabpanel" class="tab-pane weather-card one fade" id="weather-div"
                                              v-if="Object.keys(current).length > 0">
                                             <div class="top">
                                                 <div class="wrapper">
@@ -222,6 +220,7 @@
                                                     </p>
                                                 </div>
                                             </div>
+                                            <div class="btn-white-outline" @click="getForecast">Check Forecast</div>
                                             <!--<div class="bottom">
                                                 <div class="wrapper">
                                                     <ul class="forecast">
@@ -264,7 +263,8 @@
 
 <script src="assets/web/assets/jquery/jquery.min.js"></script>
 <script src="assets/tether/tether.min.js"></script>
-<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<!--<script src="assets/bootstrap/js/bootstrap.min.js"></script>-->
+<script src="./themes/bootstrap.min.js"></script>
 <script src="assets/smooth-scroll/smooth-scroll.js"></script>
 <script src="assets/dropdown/js/script.min.js"></script>
 <script src="assets/touch-swipe/jquery.touch-swipe.min.js"></script>

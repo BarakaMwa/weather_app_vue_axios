@@ -5,10 +5,33 @@ new Vue({
         location: {},
         current: {},
         loading: false,
-        error: ''
+        error: '',
+        daysForecast: 0,
+        foreCastDays: [],
+        foreCastDay:{}
     },
     methods: {
+        async getForecast(){
+            const options = {
+                method: 'GET',
+                url: 'https://weatherapi-com.p.rapidapi.com/forecast.json',
+                params: {
+                    q: this.location.name,
+                    days: this.daysForecast
+                },
+                headers: {
+                    'X-RapidAPI-Key': '76ce2ab572msh807526332335cc3p1f5d2fjsn1ed656ea6e05',
+                    'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
+                }
+            };
 
+            try {
+                const response = await axios.request(options);
+                console.log(response.data);
+            } catch (error) {
+                console.error(error);
+            }
+        },
         async searchLocation() {
             // Clear previous results
             this.location = {};
