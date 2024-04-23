@@ -1,17 +1,20 @@
 new Vue({
     el: '#app',
     data: {
+        active : 'active',
         searchQuery: '',
         location: {},
         current: {},
         loading: false,
         error: '',
-        daysForecast: 0,
+        daysForecast: 3,
         foreCastDays: [],
         foreCastDay:{}
+
     },
     methods: {
         async getForecast(){
+            this.foreCastDays = [];
             const options = {
                 method: 'GET',
                 url: 'https://weatherapi-com.p.rapidapi.com/forecast.json',
@@ -28,8 +31,12 @@ new Vue({
             try {
                 const response = await axios.request(options);
                 console.log(response.data);
+                this.foreCastDays = response.data.forecast.forecastday;
+                console.log(this.foreCastDays);
+                // $("get-forecast-modal").modal('show')
             } catch (error) {
                 console.error(error);
+                this.foreCastDays = [];
             }
         },
         async searchLocation() {

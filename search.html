@@ -24,7 +24,26 @@
     <link rel="stylesheet" href="assets/theme/css/style.css">
     <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
     <link rel="stylesheet" href="./search/search.css" type="text/css">
+    <style>
+        .img-size {
+            /* 	padding: 0;
+                margin: 0; */
+            height: 450px;
+            width: 700px;
+            background-size: cover;
+            overflow: hidden;
+        }
 
+        .modal-content {
+            width: 700px;
+            border: none;
+        }
+
+        .modal-body {
+            padding: 0;
+        }
+        .carousel-caption{left:5%;padding-bottom:30px}
+    </style>
 
 </head>
 <body>
@@ -37,8 +56,8 @@
                 <div class="mbr-table-cell">
 
                     <div class="navbar-brand">
-                        <a href="https://mobirise.com" class="mbri-sun mbr-iconfont mbr-iconfont-menu navbar-logo"></a>
-                        <a class="navbar-caption" href="https://mobirise.com">Infy Weather App</a>
+                        <a href="./index.html" class="mbri-sun mbr-iconfont mbr-iconfont-menu navbar-logo"></a>
+                        <a class="navbar-caption" href="./index.html">Infy Weather App</a>
                     </div>
 
                 </div>
@@ -51,10 +70,10 @@
 
                     <ul class="nav-dropdown collapse pull-xs-right nav navbar-nav navbar-toggleable-sm"
                         id="exCollapsingNavbar">
-                        <li class="nav-item dropdown"><a class="nav-link link" href="#">Home</a>
+                        <li class="nav-item dropdown"><a class="nav-link link" href="./index.html">Home</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link link" href="#">Search</a></li>
-                        <li class="nav-item"><a class="nav-link link" href="#">Settings</a></li>
+                        <li class="nav-item"><a class="nav-link link" href="./search.html">Search</a></li>
+                        <li class="nav-item"><a class="nav-link link" href="./settings.html">Settings</a></li>
                     </ul>
                     <button hidden="" class="navbar-toggler navbar-close" type="button" data-toggle="collapse"
                             data-target="#exCollapsingNavbar">
@@ -68,199 +87,252 @@
     </nav>
 
 </section>
+<div id="app">
+    <section class="mbr-section mbr-section-hero mbr-section-full header2 mbr-parallax-background mbr-after-navbar"
+             id="header2-7"
+             style="background-image: url(assets/images/dark-background-abstract-background-network-3d-background-3840x2160-8324.png);">
 
-<section class="mbr-section mbr-section-hero mbr-section-full header2 mbr-parallax-background mbr-after-navbar" id="app"
-         id="header2-7"
-         style="background-image: url(assets/images/dark-background-abstract-background-network-3d-background-3840x2160-8324.png);">
+        <div class="mbr-overlay" style="opacity: 0.3; background-color: rgb(0, 0, 0);">
+        </div>
 
-    <div class="mbr-overlay" style="opacity: 0.3; background-color: rgb(0, 0, 0);">
-    </div>
+        <div class="mbr-table mbr-table-full">
+            <div class="mbr-table-cell">
 
-    <div class="mbr-table mbr-table-full">
-        <div class="mbr-table-cell">
-
-            <div class="container">
-                <div class="mbr-section row search-section">
-                    <div class="mbr-table-md-up">
+                <div class="container">
+                    <div class="mbr-section row search-section">
+                        <div class="mbr-table-md-up">
 
 
-                        <div class="mbr-table-cell col-md-5 content-size">
+                            <div class="mbr-table-cell col-md-5 content-size">
 
-                            <h3 class="mbr-section-title display-2 text-white">Search Weather</h3>
+                                <h3 class="mbr-section-title display-2 text-white">Search Weather</h3>
 
-                            <div class="mbr-section-text">
-                                <p>Type In Your Location Click Search</p>
-                            </div>
-
-                            <div class="mbr-section-btn">
-                                <div class="container-fluid">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" v-model="searchQuery"
-                                               @keyup.enter="searchLocation" placeholder="Enter location...">
-                                        <button class="btn btn-primary btn-block btn-white-outline" type="button"
-                                                @click="searchLocation">Search
-                                        </button>
-                                    </div>
-
+                                <div class="mbr-section-text">
+                                    <p>Type In Your Location Click Search</p>
                                 </div>
-                            </div>
 
-                        </div>
-                        <div class="mbr-table-cell mbr-valign-top mbr-left-padding-md-up col-md-7 image-size text-white"
-                             style="width: 60%;">
-                            <div v-if="loading" class="text-center display-1 text-white">Loading...</div>
-                            <div v-else-if="error" class="alert alert-danger" role="alert">
-                                Error: {{ error }}
-                            </div>
-                            <div class="col-lg-12" v-else>
-                                <div class="col">
-                                    <ul class="nav nav-pills nav-justified" role="tablist">
-                                        <li role="presentation" v-if="Object.keys(location).length > 0" class="active">
-                                            <a class="text-white" data-target="#location-div" data-toggle="tab" role="tab"
-                                               aria-controls="location-div">Location</a></li>
-                                        <li role="presentation" v-if="Object.keys(current).length > 0">
-                                            <a class="text-white" data-target="#weather-div" data-toggle="tab" role="tab"
-                                                aria-controls="weather-div">Weather</a></li>
-                                    </ul>
-                                    <br>
-                                    <!-- Tab panes -->
-                                    <div class="tab-content">
-                                        <div role="tabpanel" class="tab-pane weather-card two text-white fade in active" id="location-div"
-                                             v-if="Object.keys(location).length > 0">
-                                            <div class="row">
-                                                <strong>Location:</strong>
-                                                {{location.country}}
-                                            </div>
-                                            <div class="row">
-                                                <div class="text-white text-center">
-                                                    <p class="">
-                                                        <strong>Name</strong>: {{ location.name }}
-                                                    </p>
-                                                    <p class="">
-                                                        <strong>Region</strong>: {{ location.region }}
-                                                    </p>
-                                                    <p class="">
-                                                        <strong>Co-ordinates</strong>: {{ location.lat}},{{
-                                                        location.lon}}
-                                                    </p>
-                                                    <p class="">
-                                                        <strong>Time Zone</strong>: {{ location.tz_id}}
-                                                    </p>
-                                                    <p class="">
-                                                        <strong>Local Date and Time</strong>: {{ location.localtime}}
-                                                    </p>
-                                                </div>
-                                            </div>
+                                <div class="mbr-section-btn">
+                                    <div class="container-fluid">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" v-model="searchQuery" autofocus
+                                                   @keyup.enter="searchLocation" placeholder="Enter location...">
+                                            <button class="btn btn-primary btn-block btn-white-outline" type="button"
+                                                    @click="searchLocation">Search
+                                            </button>
                                         </div>
 
-                                        <div role="tabpanel" class="tab-pane weather-card one fade" id="weather-div"
-                                             v-if="Object.keys(current).length > 0">
-                                            <div class="top">
-                                                <div class="wrapper">
-                                                    <div class="mynav">
-                                                        <a href="javascript:;"><span
-                                                                class="lnr lnr-chevron-left"></span></a>
-                                                        <a href="javascript:;"><span class="lnr lnr-cog"></span></a>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="mbr-table-cell mbr-valign-top mbr-left-padding-md-up col-md-7 image-size text-white"
+                                 style="width: 60%;">
+                                <div v-if="loading" class="text-center display-1 text-white">Loading...</div>
+                                <div v-else-if="error" class="alert alert-danger" role="alert">
+                                    Error: {{ error }}
+                                </div>
+                                <div class="col-lg-12" v-else>
+                                    <div class="col">
+                                        <ul class="nav nav-pills nav-justified" role="tablist">
+                                            <li role="presentation" v-if="Object.keys(location).length > 0"
+                                                class="active">
+                                                <a class="text-white" data-target="#location-div" data-toggle="tab"
+                                                   role="tab"
+                                                   aria-controls="location-div">Location</a></li>
+                                            <li role="presentation" v-if="Object.keys(current).length > 0">
+                                                <a class="text-white" data-target="#weather-div" data-toggle="tab"
+                                                   role="tab"
+                                                   aria-controls="weather-div">Weather</a></li>
+                                        </ul>
+                                        <br>
+                                        <!-- Tab panes -->
+                                        <div class="tab-content">
+                                            <div role="tabpanel"
+                                                 class="tab-pane weather-card two text-white fade in active"
+                                                 id="location-div"
+                                                 v-if="Object.keys(location).length > 0">
+                                                <div class="row">
+                                                    <strong>Location:</strong>
+                                                    {{location.country}}
+                                                </div>
+                                                <div class="row">
+                                                    <div class="text-white text-center">
+                                                        <p class="">
+                                                            <strong>Name</strong>: {{ location.name }}
+                                                        </p>
+                                                        <p class="">
+                                                            <strong>Region</strong>: {{ location.region }}
+                                                        </p>
+                                                        <p class="">
+                                                            <strong>Co-ordinates</strong>: {{ location.lat}},{{
+                                                            location.lon}}
+                                                        </p>
+                                                        <p class="">
+                                                            <strong>Time Zone</strong>: {{ location.tz_id}}
+                                                        </p>
+                                                        <p class="">
+                                                            <strong>Local Date and Time</strong>: {{
+                                                            location.localtime}}
+                                                        </p>
                                                     </div>
-                                                    <img :src="current.condition.icon">
-                                                    <h1 class="heading text-capitalize display-2">
-                                                        {{current.condition.text}}</h1>
-                                                    <h3 class="location">{{location.name}}, {{location.country}}</h3>
-                                                    <p class="cloud">
-                                                        <strong>Cloud Cover:</strong>
-                                                        <span class="temp-value">{{current.cloud}}</span>
-                                                        <!--                                                    <sup>o</sup><span class="temp-type">C</span>-->
-                                                    </p>
-                                                    <p class="temp">
-                                                        <strong>Temperature :</strong>
-                                                        <span class="temp-value">{{current.feelslike_c}}</span>
-                                                        <sup>o</sup><span class="temp-type">C</span> -
-                                                        <span class="temp-value">{{current.feelslike_f}}</span>
-                                                        <sup></sup><span class="temp-type">F</span>
-                                                    </p>
-                                                    <p class="temp">
-                                                        <strong>Gust Speed:</strong>
-                                                        <span class="temp-value">{{current.gust_kph}}</span>
-                                                        <sup>km</sup><span class="temp-type">/hr</span> -
-                                                        <span class="temp-value">{{current.gust_mph}}</span>
-                                                        <sup>miles</sup><span class="temp-type">/hr</span>
-                                                    </p>
-                                                    <p class="temp">
-                                                        <strong>Wind Direction:</strong>
-                                                        <span class="temp-value">{{current.wind_dir}}</span>
-                                                    </p>
-                                                    <p class="temp">
-                                                        <strong>Wind Speed:</strong>
-                                                        <span class="temp-value">{{current.wind_kph}}</span>
-                                                        <sup>km</sup><span class="temp-type">/hr</span> -
-                                                        <span class="temp-value">{{current.wind_mph}}</span>
-                                                        <sup>miles</sup><span class="temp-type">/hr</span>
-                                                    </p>
-                                                    <p class="temp">
-                                                        <strong>Humidity:</strong>
-                                                        <span class="temp-value">{{current.humidity}}</span>
-                                                    </p>
-                                                    <p class="temp">
-                                                        <strong>Rain Fall:</strong>
-                                                        <span class="temp-value">{{current.precip_in}}</span>
-                                                        <!--                                                    <sup>km</sup>-->
-                                                        <span class="temp-type">inches</span> -
-                                                        <span class="temp-value">{{current.precip_mm}}</span>
-                                                        <!--                                                    <sup>miles</sup>-->
-                                                        <span class="temp-type">mm</span>
-                                                    </p>
-                                                    <p class="temp">
-                                                        <strong>Pressure:</strong>
-                                                        <span class="temp-value">{{current.pressure_in}}</span>
-                                                        <!--                                                    <sup>km</sup>-->
-                                                        <span class="temp-type">inches</span> -
-                                                        <span class="temp-value">{{current.pressure_mb}}</span>
-                                                        <!--                                                    <sup>miles</sup>-->
-                                                        <span class="temp-type">mm</span>
-                                                    </p>
                                                 </div>
                                             </div>
-                                            <div class="btn-white-outline" @click="getForecast">Check Forecast</div>
-                                            <!--<div class="bottom">
-                                                <div class="wrapper">
-                                                    <ul class="forecast">
-                                                        <a href="javascript:;"><span
-                                                                class="lnr lnr-chevron-up go-up"></span></a>
-                                                        <li class="active">
-                                                            <span class="date">Yesterday</span>
-                                                            <span class="lnr lnr-sun condition">
-                                        <span class="temp">23<span class="deg">0</span><span
-                                                class="temp-type">C</span></span>
-                                    </span>
-                                                        </li>
-                                                        <li>
-                                                            <span class="date">Tomorrow</span>
-                                                            <span class="lnr lnr-cloud condition">
-                                        <span class="temp">21<span class="deg">0</span><span
-                                                class="temp-type">C</span></span>
-                                    </span>
-                                                        </li>
-                                                    </ul>
+
+                                            <div role="tabpanel" class="tab-pane weather-card one fade" id="weather-div"
+                                                 v-if="Object.keys(current).length > 0">
+                                                <div class="top">
+                                                    <div class="wrapper">
+                                                        <div class="mynav">
+                                                            <a href="javascript:;"><span
+                                                                    class="lnr lnr-chevron-left"></span></a>
+                                                            <a href="javascript:;"><span class="lnr lnr-cog"></span></a>
+                                                        </div>
+                                                        <img :src="current.condition.icon">
+                                                        <h1 class="heading text-capitalize display-2">
+                                                            {{current.condition.text}}</h1>
+                                                        <h3 class="location">{{location.name}},
+                                                            {{location.country}}</h3>
+                                                        <p class="cloud">
+                                                            <strong>Cloud Cover:</strong>
+                                                            <span class="temp-value">{{current.cloud}}</span>
+                                                            <!--                                                    <sup>o</sup><span class="temp-type">C</span>-->
+                                                        </p>
+                                                        <p class="temp">
+                                                            <strong>Temperature :</strong>
+                                                            <span class="temp-value">{{current.feelslike_c}}</span>
+                                                            <sup>o</sup><span class="temp-type">C</span> -
+                                                            <span class="temp-value">{{current.feelslike_f}}</span>
+                                                            <sup></sup><span class="temp-type">F</span>
+                                                        </p>
+                                                        <p class="temp">
+                                                            <strong>Gust Speed:</strong>
+                                                            <span class="temp-value">{{current.gust_kph}}</span>
+                                                            <sup>km</sup><span class="temp-type">/hr</span> -
+                                                            <span class="temp-value">{{current.gust_mph}}</span>
+                                                            <sup>miles</sup><span class="temp-type">/hr</span>
+                                                        </p>
+                                                        <p class="temp">
+                                                            <strong>Wind Direction:</strong>
+                                                            <span class="temp-value">{{current.wind_dir}}</span>
+                                                        </p>
+                                                        <p class="temp">
+                                                            <strong>Wind Speed:</strong>
+                                                            <span class="temp-value">{{current.wind_kph}}</span>
+                                                            <sup>km</sup><span class="temp-type">/hr</span> -
+                                                            <span class="temp-value">{{current.wind_mph}}</span>
+                                                            <sup>miles</sup><span class="temp-type">/hr</span>
+                                                        </p>
+                                                        <p class="temp">
+                                                            <strong>Humidity:</strong>
+                                                            <span class="temp-value">{{current.humidity}}</span>
+                                                        </p>
+                                                        <p class="temp">
+                                                            <strong>Rain Fall:</strong>
+                                                            <span class="temp-value">{{current.precip_in}}</span>
+                                                            <!--                                                    <sup>km</sup>-->
+                                                            <span class="temp-type">inches</span> -
+                                                            <span class="temp-value">{{current.precip_mm}}</span>
+                                                            <!--                                                    <sup>miles</sup>-->
+                                                            <span class="temp-type">mm</span>
+                                                        </p>
+                                                        <p class="temp">
+                                                            <strong>Pressure:</strong>
+                                                            <span class="temp-value">{{current.pressure_in}}</span>
+                                                            <!--                                                    <sup>km</sup>-->
+                                                            <span class="temp-type">inches</span> -
+                                                            <span class="temp-value">{{current.pressure_mb}}</span>
+                                                            <!--                                                    <sup>miles</sup>-->
+                                                            <span class="temp-type">mm</span>
+                                                        </p>
+                                                    </div>
                                                 </div>
-                                            </div>-->
+                                                <div class="form-group">
+                                                    <input hidden class="form-control" type="number" min="2" max="10"
+                                                           v-model="daysForecast" value="3">
+                                                </div>
+                                                <div class="btn-white-outline btn-white btn btn-block"
+                                                     data-target="#get-forecast-modal" data-toggle="modal"
+                                                     @click="getForecast">Check Forecast
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
                 </div>
+
             </div>
-
         </div>
-    </div>
 
-    <div class="mbr-arrow mbr-arrow-floating hidden-sm-down" aria-hidden="true"><a href="#next"><i
-            class="mbr-arrow-icon"></i></a></div>
+        <div class="mbr-arrow mbr-arrow-floating hidden-sm-down" aria-hidden="true"><a href="#next"><i
+                class="mbr-arrow-icon"></i></a></div>
+    </section>
 
-</section>
+    <div class="modal fade" id="get-forecast-modal" tabindex="-1" role="dialog"
+         style="background-image: url(assets/images/dark-background-abstract-background-network-3d-background-3840x2160-8324.png);">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <!--<div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Modal title</h4>
+                </div>-->
+                <div class="modal-body"
+                     style="background-image: url(assets/images/dark-background-abstract-background-network-3d-background-3840x2160-8324.png);">
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel"
+                         v-if="foreCastDays.length > 0">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-example-generic" data-slide-to="0" :data-slide-to="index"
+                                v-for="(foreCastDay, index) in foreCastDays"
+                                :key="index"
+                                :class="{ 'active': index === 0 }"></li>
+                        </ol>
 
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" role="listbox">
+                            <div class="item" :class="{ 'active': index === 0 }"
+                                 v-for="(foreCastDay, index) in foreCastDays"
+                                 :key="index">
+                                <img src="./assets/images/dark-background-abstract-background-network-3d-background-3840x2160-8324.png"
+                                     alt="..." class="img-size">
+                                <div class="carousel-caption text-left">
+                                    <p class="text-left">
+                                    <h3>{{foreCastDay.date}}</h3>
+                                    <br>
+                                    <h6><strong>Temp Max and Min (<sup>o</sup>C)</strong></h6>:<h6>{{foreCastDay.day.maxtemp_c}} - {{foreCastDay.day.maxtemp_c}}</h6>
+                                    <br>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#carousel-example-generic" role="button"
+                           data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic" role="button"
+                           data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                    <div v-else="">
+                        No Forecast Info
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color: transparent">
+                    <button type="button" class="btn btn-danger btn-block" data-dismiss="modal">Close</button>
+                    <!--                <button type="button" class="btn btn-primary">Save changes</button>-->
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>
 <script src="assets/web/assets/jquery/jquery.min.js"></script>
 <script src="assets/tether/tether.min.js"></script>
 <!--<script src="assets/bootstrap/js/bootstrap.min.js"></script>-->
