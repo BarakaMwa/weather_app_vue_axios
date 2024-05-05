@@ -194,6 +194,7 @@
 <script src="assets/mobirise-slider-video/script.js"></script>
 <script src="./vue/vue.js"></script>
 <script src="./axios/axios.min_.js"></script>
+<script src="./swal/sweetalert2@11.js"></script>
 
 <input name="animation" type="hidden">
 
@@ -216,8 +217,11 @@
                 if(this.storedLocation === null){
                     if (navigator.geolocation) {
                         navigator.geolocation.getCurrentPosition(this.showPosition, this.showError);
+                        // alert("Location Set Successfully")
+                        swalAlertSimple("Done", "Location Co-ordinates Set SuccessFully", "success")
                     } else {
-                        alert('Geolocation is not supported by this Device.');
+                        // alert('Geolocation is not supported by this Device.');
+                        swalAlertSimple("Opps!", "Geolocation is not supported by this Device.", "error")
                     }
                 }else{
                     this.userLocation = this.storedLocation;

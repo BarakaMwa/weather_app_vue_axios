@@ -105,8 +105,11 @@ new Vue({
             if(this.storedLocation === null){
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(this.showPosition, this.showError);
+                    // alert("Location Set Successfully")
+                    swalAlertSimple("Done", "Location Co-ordinates Set SuccessFully", "success")
                 } else {
-                    alert('Geolocation is not supported by this Device.');
+                    // alert('Geolocation is not supported by this Device.');
+                    swalAlertSimple("Opps!", "Geolocation is not supported by this Device.", "error")
                 }
             }else{
                 this.userLocation = this.storedLocation;

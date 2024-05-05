@@ -3,7 +3,17 @@
   <component name="issues">
     <option name="index">
       <map>
+        <entry key="/Dummy.txt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/home.html">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/index.html">
           <value>
             <set />
           </value>
@@ -14,6 +24,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/scripts/search.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/search.html">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/swal/sweetalert2@11.js">
           <value>
             <set />
           </value>
