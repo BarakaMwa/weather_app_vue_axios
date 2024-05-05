@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <!-- Site made with Mobirise Website Builder v3.12.1, https://mobirise.com -->
     <meta charset="UTF-8">
@@ -76,13 +76,13 @@
     <div>
         <div>
             <div>
-                <ol class="carousel-indicators">
+                <ol class="carousel-indicators" >
                     <li data-app-prevent-settings="" data-target="#slider-1" class="active" data-slide-to="0"></li>
                     <li data-app-prevent-settings="" data-target="#slider-1" data-slide-to="1"></li>
                     <li data-app-prevent-settings="" data-target="#slider-1" data-slide-to="2"></li>
                 </ol>
-                <div class="carousel-inner" role="listbox">
-                    <div class="mbr-section mbr-section-hero carousel-item dark center mbr-section-full active">
+                <div class="carousel-inner" role="listbox" id="app">
+                    <div class="mbr-section mbr-section-hero carousel-item dark center mbr-section-full active" @load="getUserLocation">
                         <video autoplay loop muted>
                             <source src="./videos/A%20Beautiful%20View%20Of%20Sunset%20·%20Free%20Stock%20Video.mp4"
                                     type="video/mp4">
@@ -101,6 +101,11 @@
                                         <div class="mbr-section-btn">
                                             <a class="btn btn-lg btn-info" role="button"
                                                href="./home.html">Get Started</a>
+                                            <br>
+                                        </div>
+                                        <div class="mbr-section-btn">
+                                            <a class="btn btn-lg btn-white-outline" role="button"
+                                               @click="getUserLocation">Get Current Weather</a>
                                             <br>
                                         </div>
                                     </div>
@@ -122,7 +127,7 @@
                                 <div class="row">
                                     <div class="col-md-8 col-md-offset-1">
                                         <h2 class="mbr-section-title display-1">Search By&nbsp;<br>Location</h2>
-                                        <p class="mbr-section-lead lead">Plan Your &nbsp;Holidays Rigth<br>Check The
+                                        <p class="mbr-section-lead lead">Plan Your &nbsp;Holidays Right<br>Check The
                                             Weather at Your Holiday Destination</p>
                                         <div class="mbr-section-btn">
                                             <a role="button"
@@ -187,8 +192,73 @@
 <script src="assets/jquery-mb-ytplayer/jquery.mb.ytplayer.min.js"></script>
 <script src="assets/theme/js/script.js"></script>
 <script src="assets/mobirise-slider-video/script.js"></script>
-
+<script src="./vue/vue.js"></script>
+<script src="./axios/axios.min_.js"></script>
 
 <input name="animation" type="hidden">
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            userLocation: null,
+            storedLocation: null
+        }, created() {
+            // Fetch latitude and longitude from localStorage when the component is created
+            this.storedLocation = {
+                latitude: localStorage.getItem('latitude'),
+                longitude: localStorage.getItem('longitude')
+            };
+            console.log(this.storedLocation);
+        },
+        methods: {
+            getUserLocation() {
+                if(this.storedLocation === null){
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(this.showPosition, this.showError);
+                    } else {
+                        alert('Geolocation is not supported by this Device.');
+                    }
+                }else{
+                    this.userLocation = this.storedLocation;
+                }
+                console.log(this.userLocation);
+            },
+            showPosition(position) {
+                this.userLocation = {
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude
+                };
+                localStorage.setItem('latitude', position.coords.latitude);
+                localStorage.setItem('longitude', position.coords.longitude);
+                console.log(this.userLocation);
+                this.storedLocation = {
+                    latitude: localStorage.getItem('latitude'),
+                    longitude: localStorage.getItem('longitude')
+                };
+                console.log(this.storedLocation);
+            },
+            showError(error) {
+                console.log(this.userLocation);
+                error.UNKNOWN_ERROR = "UNKNOWN ERROR";
+                switch(error.code) {
+                    case error.PERMISSION_DENIED:
+                        alert('User denied the request for Geolocation.');
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        alert('Location information is unavailable.');
+                        break;
+                    case error.TIMEOUT:
+                        alert('The request to get user location timed out.');
+                        break;
+                    case error.UNKNOWN_ERROR:
+                        alert('An unknown error occurred.');
+                        break;
+                }
+            }
+        }
+    });
+</script>
+
 </body>
 </html>

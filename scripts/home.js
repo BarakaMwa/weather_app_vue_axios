@@ -1,7 +1,7 @@
 new Vue({
     el: '#app',
     data: {
-        active : 'active',
+        active: 'active',
         searchQuery: '',
         location: {},
         current: {},
@@ -9,11 +9,22 @@ new Vue({
         error: '',
         daysForecast: 3,
         foreCastDays: [],
-        foreCastDay:{}
+        userLocation: null,
+        storedLocation: null,
+        foreCastDay: {}
 
+    }, created() {
+        // Fetch latitude and longitude from localStorage when the component is created
+        this.getUserLocation();
+        this.storedLocation = {
+            latitude: localStorage.getItem('latitude'),
+            longitude: localStorage.getItem('longitude')
+        };
+        console.log(this.storedLocation);
+        this.searchLocation(this.storedLocation);
     },
     methods: {
-        async getForecast(){
+        async getForecast() {
             this.foreCastDays = [];
             const options = {
                 method: 'GET',
@@ -39,7 +50,7 @@ new Vue({
                 this.foreCastDays = [];
             }
         },
-        async searchLocation() {
+        async searchLocation(location) {
             // Clear previous results
             this.location = {};
             this.error = '';
@@ -58,7 +69,7 @@ new Vue({
             const options = {
                 method: 'GET',
                 url: 'https://weatherapi-com.p.rapidapi.com/current.json',
-                params: {q: this.searchQuery},
+                params: {q: location.latitude+","+location.longitude},
                 headers: {
                     'X-RapidAPI-Key': '76ce2ab572msh807526332335cc3p1f5d2fjsn1ed656ea6e05',
                     'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
@@ -90,20 +101,35 @@ new Vue({
                      this.loading = false;
                  });*/
         },
-        /*getUserLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(this.showPosition, this.showError);
-            } else {
-                alert('Geolocation is not supported by this browser.');
+        getUserLocation() {
+            if(this.storedLocation === null){
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(this.showPosition, this.showError);
+                } else {
+                    alert('Geolocation is not supported by this Device.');
+                }
+            }else{
+                this.userLocation = this.storedLocation;
             }
+            console.log(this.userLocation);
         },
         showPosition(position) {
             this.userLocation = {
                 latitude: position.coords.latitude,
                 longitude: position.coords.longitude
             };
+            localStorage.setItem('latitude', position.coords.latitude);
+            localStorage.setItem('longitude', position.coords.longitude);
+            console.log(this.userLocation);
+            this.storedLocation = {
+                latitude: localStorage.getItem('latitude'),
+                longitude: localStorage.getItem('longitude')
+            };
+            console.log(this.storedLocation);
         },
         showError(error) {
+            console.log(this.userLocation);
+            error.UNKNOWN_ERROR = "UNKNOWN ERROR";
             switch(error.code) {
                 case error.PERMISSION_DENIED:
                     alert('User denied the request for Geolocation.');
@@ -118,24 +144,8 @@ new Vue({
                     alert('An unknown error occurred.');
                     break;
             }
-        }*/
+        }
     }
 });
 
-/*
-const options = {
-    method: 'GET',
-    url: 'https://weatherapi-com.p.rapidapi.com/current.json',
-    params: {q: '53.1,-0.13'},
-    headers: {
-        'X-RapidAPI-Key': '76ce2ab572msh807526332335cc3p1f5d2fjsn1ed656ea6e05',
-        'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
-    }
-};
 
-try {
-    const response = await axios.request(options);
-    console.log(response.data);
-} catch (error) {
-    console.error(error);
-}*/
